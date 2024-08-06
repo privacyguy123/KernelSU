@@ -201,6 +201,8 @@ jobs:
       - name: Build Kernel/LKM
         working-directory: android-kernel
         run: |
+          cp susfs/susfs.c common/fs/susfs.c
+          cp susfs/susfs.h common/include/linux/susfs.h
           if [ ! -z ${{ vars.EXPECTED_SIZE }} ] && [ ! -z ${{ vars.EXPECTED_HASH }} ]; then
             export KSU_EXPECTED_SIZE=${{ vars.EXPECTED_SIZE }}
             export KSU_EXPECTED_HASH=${{ vars.EXPECTED_HASH }}
