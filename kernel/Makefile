@@ -17,7 +17,7 @@ ccflags-y += -I$(objtree)/security/selinux -include $(srctree)/include/uapi/asm-
 obj-$(CONFIG_KSU) += kernelsu.o
 
 # hardcode!
-$(eval KSU_VERSION=11682)
+$(eval KSU_VERSION=11986)
 $(info -- KernelSU version: $(KSU_VERSION))
 ccflags-y += -DKSU_VERSION=$(KSU_VERSION)
 
@@ -30,11 +30,11 @@ ccflags-y += -DKSU_COMPAT_HAS_SELINUX_STATE
 endif
 
 ifndef KSU_EXPECTED_SIZE
-KSU_EXPECTED_SIZE := 0x033b
+KSU_EXPECTED_SIZE := 0x296
 endif
 
 ifndef KSU_EXPECTED_HASH
-KSU_EXPECTED_HASH := c371061b19d8c7d7d6133c6a9bafe198fa944e50c1b31c9d8daa8d7f1fc2d2d6
+KSU_EXPECTED_HASH := b5c7ab27b12742631c1b961f832b9893503300c35d95dcab09db51379323ee57
 endif
 
 ifdef KSU_MANAGER_PACKAGE
