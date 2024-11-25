@@ -694,9 +694,9 @@ int ksu_handle_setuid(struct cred *new, const struct cred *old)
 	// check if current process is zygote
 	bool is_zygote_child = zygote_sid == ksu_get_current_sid();
 	if (likely(is_zygote_child)) {
-		// set flag TASK_STRUCT_KABI3_IS_ZYGOTE to current->android_kabi_reserved3
-		if (unlikely(!(current->android_kabi_reserved3 & TASK_STRUCT_KABI3_IS_ZYGOTE))) {
-			current->android_kabi_reserved3 |= TASK_STRUCT_KABI3_IS_ZYGOTE;
+		// set flag TASK_STRUCT_KABI1_IS_ZYGOTE to current->android_kabi_reserved3
+		if (unlikely(!(current->android_kabi_reserved1 & TASK_STRUCT_KABI1_IS_ZYGOTE))) {
+			current->android_kabi_reserved1 |= TASK_STRUCT_KABI1_IS_ZYGOTE;
 			pr_info("susfs: Found newly created zygote process\n");
 		}
 		// if spawned process is non user app process, run try_umount()

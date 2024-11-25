@@ -93,6 +93,25 @@ subprojects {
                 sourceCompatibility = androidSourceCompatibility
                 targetCompatibility = androidTargetCompatibility
             }
+
+            // Ensure that you're inside the android { } block
+            configure<com.android.build.gradle.internal.dsl.BaseAppModuleExtension> {
+                signingConfigs {
+                    create("release") {
+                        keyAlias = project.findProperty("KEY_ALIAS") as String
+                        keyPassword = project.findProperty("KEY_PASSWORD") as String
+                        storeFile = file(project.findProperty("KEYSTORE_FILE") as String)
+                        storePassword = project.findProperty("KEYSTORE_PASSWORD") as String
+                    }
+                }
+
+                buildTypes {
+                    getByName("release") {
+                        isMinifyEnabled = true
+                        signingConfig = signingConfigs.getByName("release")
+                    }
+                }
+            }
         }
     }
 }
